@@ -12,6 +12,10 @@ body {
     overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 body button {
     border: none;
 }
@@ -23,8 +27,20 @@ body button {
     background-repeat: no-repeat;
     background-size: max(1200px, 100vw);
     height: 100vh;
-    background-color: black;
     border-bottom: 7px solid gray;
+}
+
+.main .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.397);
+}
+
+.main .textContent h1 {
+    text-shadow: 0 0 40px rgb(0, 0, 0);
 }
 
 .main .box {
@@ -139,30 +155,51 @@ input::placeholder {
     color: white;
 
 }
+
 .textContent h1 {
     font-size: clamp(3em, 6vw, 6em);
 }
+
 .second-main {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     max-width: 100vw;
     margin: auto;
     color: white;
     align-items: center;
-    height: 80vh;
+    height: auto;
     border-bottom: 7px solid gray;
-    padding-inline: 140px;
+    padding-inline: 16px;
 }
 
-.second-main p {
+.second-main .second-main-content {
     color: white;
+    flex: 1 300px;
+    padding-inline: 40px;
+}
+
+.second-main .second-main-content p {
+    width: 100%;
+}
+
+.second-main-content p:first-child,
+.third-main-content p:first-child {
+    font-size: clamp(2em, 5vw, 4em);
+    font-weight: 900;
+    margin-bottom: 16px;
+}
+
+.second-main-content p:last-child,
+.third-main-content p:last-child {
+    font-size: 1.4em;
 }
 
 .second-img {
     display: flex;
     align-items: center;
     justify-content: center;
-
+    flex: 1 300px;
     position: relative;
     width: 100%;
 }
@@ -171,7 +208,6 @@ input::placeholder {
     width: 40vw;
     position: absolute;
     z-index: 10;
-
 }
 
 .second-img video {
@@ -198,23 +234,34 @@ input::placeholder {
 
 .third-main {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    padding-inline: 160px;
+    padding-inline: 16px;
     gap: 23px;
-    height: 80vh;
-    border-bottom: 7px solid gray;
+    border-bottom: 7px solid #808080;
 }
 
-.third-main p {
+.second-main,
+.third-main {
+    height: 100vh !important;
+}
+
+.third-main-content {
+    flex: 1 300px;
+}
+
+.third-main-content p {
+    width: 100%;
+    padding-inline: 24px;
     color: white;
 }
 
 .third-main img {
     display: block;
     height: 400px;
-    width: 700px;
-    position: relative
+    width: 550px;
+    position: relative;
 }
 
 .third-main span {
@@ -279,26 +326,43 @@ section {
 
 }
 
+.question-container {
+    margin: auto;
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-block: 44px;
+    gap: 12px;
+}
+
 .quetions {
+    width: 100%;
     background-color: black;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    /* color: white; */
+.question-container h1 {
+    color: white;
+    font-size: clamp(2em, 4vw, 5em);
+    margin-bottom: 44px;
 }
 
 .box1 {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     background-color: rgb(63, 62, 62);
     transition: all 0.2s ease-out;
     padding: 20px;
-    max-width: 60vw;
-    margin: 11px auto;
     color: white;
     font-size: 14px;
     gap: 1px;
     cursor: pointer;
-
 }
 
 .quetions:hover .box1 {
@@ -306,42 +370,83 @@ section {
 }
 
 footer {
-    color: white;
-    max-width: 60vw;
     margin: auto;
+    width: 80%;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
     padding: 14px;
-
+    justify-content: center;
+    align-items: center;
 }
 
-footer .que {
-    padding: 34px 0;
+footer h1 {
+    width: 100%;
+    font-size: 2em;
+    margin-bottom: 24px;
 }
 
 .footer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    color: white;
-
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 28px;
 }
 
 .footer a {
     font-size: 14px;
-    padding-inline: 12px;
+    padding: 12px 8px;
     color: white;
-
 }
 
 .footer-item {
+    width: 200px;
     display: flex;
     flex-direction: column;
-    gap: 23px;
+    gap: 16px;
 }
 
-.footer-btn button {
-    padding: 10px 12px;
-    padding-top: 20px;
+.footer-item a:first-child {
+    font-size: 1.2em;
+    font-weight: 900;
+}
+
+.footer-item button {
+    padding: 16px 20px;
     background-color: rgba(23, 23, 23, 0.3);
     color: white;
+}
 
+
+@media (max-width:768px) {
+
+    .second-main,
+    .third-main {
+        height: auto;
+        padding-bottom: 44px;
+    }
+
+    .question-container {
+        width: 90%;
+    }
+
+    .question-container h1 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .quetions span {
+        font-size: 1.2em;
+    }
+
+    .quetions {
+        width: 100%;
+    }
+
+    footer {
+        width: 100%;
+    }
 
 }
